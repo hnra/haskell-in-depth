@@ -2,7 +2,10 @@ name: mycode
 version: 0.1
 author: Henrik Andersson
 
-ghc-options: -Wall
+ghc-options:
+  - -Wall
+  - -fno-warn-orphans
+  - -fno-warn-unused-top-binds
 
 dependencies:
   - base >=4.12 && <5

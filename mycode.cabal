@@ -19,7 +19,7 @@ library ch02-lib
       OverloadedStrings
       InstanceSigs
       StandaloneDeriving
-  ghc-options: -Wall
+  ghc-options: -Wall -fno-warn-orphans -fno-warn-unused-top-binds
   build-depends:
       base >=4.12 && <5
   default-language: Haskell2010
@@ -32,7 +32,7 @@ executable ch01
       OverloadedStrings
       InstanceSigs
       StandaloneDeriving
-  ghc-options: -Wall
+  ghc-options: -Wall -fno-warn-orphans -fno-warn-unused-top-binds
   build-depends:
       base >=4.12 && <5
     , fmt >=0.5 && <0.7
@@ -49,7 +49,7 @@ executable ch02
       OverloadedStrings
       InstanceSigs
       StandaloneDeriving
-  ghc-options: -Wall
+  ghc-options: -Wall -fno-warn-orphans -fno-warn-unused-top-binds
   build-depends:
       base >=4.12 && <5
     , fmt >=0.5 && <0.7
@@ -64,7 +64,7 @@ test-suite ch02-tests
       OverloadedStrings
       InstanceSigs
       StandaloneDeriving
-  ghc-options: -Wall
+  ghc-options: -Wall -fno-warn-orphans -fno-warn-unused-top-binds
   build-depends:
       base >=4.12 && <5
     , ch02-lib
