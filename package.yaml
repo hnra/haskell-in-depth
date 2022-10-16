@@ -9,6 +9,8 @@ dependencies:
 
 default-extensions:
   - OverloadedStrings
+  - InstanceSigs
+  - StandaloneDeriving
 
 executables:
   ch01:
@@ -20,7 +22,22 @@ executables:
       - fmt >=0.5 && <0.7
   ch02:
     source-dirs: ch02
-    main: ch02.hs
+    main: Main.hs
+    other-modules: Radar
+    dependencies:
+      - fmt >=0.5 && <0.7
+
+internal-libraries:
+  ch02-lib:
+    source-dirs: ch02
+    exposed-modules: Radar
+    other-modules: []
+  
+tests:
+  ch02-tests:
+    source-dirs: ch02-tests
+    main: Test.hs
     other-modules: []
     dependencies:
-      - fmt
+      - ch02-lib
+      - random >=1.2 && <1.3

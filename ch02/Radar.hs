@@ -1,10 +1,6 @@
 {-# LANGUAGE DeriveAnyClass #-}
-{-# LANGUAGE InstanceSigs #-}
 
-module Main where
-
-import Fmt
-import System.Environment (getArgs)
+module Radar where
 
 class (Eq a, Enum a, Bounded a) => CyclicEnum a where
   cpred :: a -> a
@@ -20,22 +16,8 @@ class (Eq a, Enum a, Bounded a) => CyclicEnum a where
 data Direction = North | East | South | West
   deriving (Eq, Show, Bounded, Enum, CyclicEnum, Read)
 
-instance Buildable Direction where
-  build :: Direction -> Builder
-  build North = "N"
-  build East = "E"
-  build South = "S"
-  build West = "W"
-
 data Turn = TNone | TLeft | TRight | TAround
   deriving (Eq, Show, Bounded, Enum, Read)
-
-instance Buildable Turn where
-  build :: Turn -> Builder
-  build TNone = "--"
-  build TLeft = "<-"
-  build TRight = "->"
-  build TAround = "||"
 
 instance Semigroup Turn where
   (<>) :: Turn -> Turn -> Turn
@@ -76,30 +58,3 @@ orient d1 d2 = head $ filter (\t -> rotate t d1 == d2) every
 orientMany :: [Direction] -> [Turn]
 orientMany ds@(_ : _ : _) = zipWith orient ds (tail ds)
 orientMany _ = []
-
-rotateFromFile :: Direction -> FilePath -> IO ()
-rotateFromFile dir fname = do
-  f <- readFile fname
-  let turns = map read $ lines f
-      finalDir = rotateMany dir turns
-      dirs = rotateManySteps dir turns
-  fmtLn $ "Final direction: " +|| finalDir ||+ ""
-  fmt $ nameF "Intermediate directions" $ unwordsF dirs
-
-orientFromFile :: FilePath -> IO ()
-orientFromFile fname = do
-  f <- readFile fname
-  let dirs = map read $ lines f
-      turns = orientMany dirs
-  fmt $ nameF "All turns" $ unwordsF turns
-
-main :: IO ()
-main = do
-  args <- getArgs
-  case args of
-    ["-r", fname, dir] -> rotateFromFile (read dir) fname
-    ["-o", fname] -> orientFromFile fname
-    _usage ->
-      putStrLn $
-        "Usage: ch02 -o filename\n"
-          ++ "       ch02 -r filename direction"

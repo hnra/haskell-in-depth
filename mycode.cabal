@@ -1,4 +1,4 @@
-cabal-version: 1.12
+cabal-version: 2.0
 
 -- This file has been generated from package.yaml by hpack version 0.35.0.
 --
@@ -10,12 +10,28 @@ author:         Henrik Andersson
 maintainer:     Henrik Andersson
 build-type:     Simple
 
+library ch02-lib
+  exposed-modules:
+      Radar
+  hs-source-dirs:
+      ch02
+  default-extensions:
+      OverloadedStrings
+      InstanceSigs
+      StandaloneDeriving
+  ghc-options: -Wall
+  build-depends:
+      base >=4.12 && <5
+  default-language: Haskell2010
+
 executable ch01
   main-is: ch01.hs
   hs-source-dirs:
       ch01
   default-extensions:
       OverloadedStrings
+      InstanceSigs
+      StandaloneDeriving
   ghc-options: -Wall
   build-depends:
       base >=4.12 && <5
@@ -24,13 +40,33 @@ executable ch01
   default-language: Haskell2010
 
 executable ch02
-  main-is: ch02.hs
+  main-is: Main.hs
+  other-modules:
+      Radar
   hs-source-dirs:
       ch02
   default-extensions:
       OverloadedStrings
+      InstanceSigs
+      StandaloneDeriving
   ghc-options: -Wall
   build-depends:
       base >=4.12 && <5
-    , fmt
+    , fmt >=0.5 && <0.7
+  default-language: Haskell2010
+
+test-suite ch02-tests
+  type: exitcode-stdio-1.0
+  main-is: Test.hs
+  hs-source-dirs:
+      ch02-tests
+  default-extensions:
+      OverloadedStrings
+      InstanceSigs
+      StandaloneDeriving
+  ghc-options: -Wall
+  build-depends:
+      base >=4.12 && <5
+    , ch02-lib
+    , random ==1.2.*
   default-language: Haskell2010
