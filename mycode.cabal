@@ -55,11 +55,24 @@ executable ch02
     , fmt >=0.5 && <0.7
   default-language: Haskell2010
 
+executable ch03
+  main-is: Main.hs
+  hs-source-dirs:
+      ch03
+  default-extensions:
+      OverloadedStrings
+      InstanceSigs
+      StandaloneDeriving
+  ghc-options: -Wall -fno-warn-orphans -fno-warn-unused-top-binds
+  build-depends:
+      base >=4.12 && <5
+  default-language: Haskell2010
+
 test-suite ch02-tests
   type: exitcode-stdio-1.0
   main-is: Test.hs
   hs-source-dirs:
-      ch02-tests
+      ch02/tests
   default-extensions:
       OverloadedStrings
       InstanceSigs

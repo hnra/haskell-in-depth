@@ -29,6 +29,10 @@ executables:
     other-modules: Radar
     dependencies:
       - fmt >=0.5 && <0.7
+  ch03:
+    source-dirs: ch03
+    main: Main.hs
+    other-modules: []
 
 internal-libraries:
   ch02-lib:
@@ -38,7 +42,7 @@ internal-libraries:
   
 tests:
   ch02-tests:
-    source-dirs: ch02-tests
+    source-dirs: ch02/tests
     main: Test.hs
     other-modules: []
     dependencies:
