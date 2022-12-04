@@ -19,6 +19,8 @@ library ch02-lib
       OverloadedStrings
       InstanceSigs
       StandaloneDeriving
+      DeriveGeneric
+      DeriveAnyClass
   ghc-options: -Wall -fno-warn-orphans -fno-warn-unused-top-binds
   build-depends:
       base >=4.12 && <5
@@ -32,6 +34,8 @@ executable ch01
       OverloadedStrings
       InstanceSigs
       StandaloneDeriving
+      DeriveGeneric
+      DeriveAnyClass
   ghc-options: -Wall -fno-warn-orphans -fno-warn-unused-top-binds
   build-depends:
       base >=4.12 && <5
@@ -49,6 +53,8 @@ executable ch02
       OverloadedStrings
       InstanceSigs
       StandaloneDeriving
+      DeriveGeneric
+      DeriveAnyClass
   ghc-options: -Wall -fno-warn-orphans -fno-warn-unused-top-binds
   build-depends:
       base >=4.12 && <5
@@ -57,12 +63,23 @@ executable ch02
 
 executable ch03
   main-is: Main.hs
+  other-modules:
+      Charts
+      HtmlReport
+      Params
+      QuoteData
+      StatReport
+      Paths_mycode
+  autogen-modules:
+      Paths_mycode
   hs-source-dirs:
       ch03
   default-extensions:
       OverloadedStrings
       InstanceSigs
       StandaloneDeriving
+      DeriveGeneric
+      DeriveAnyClass
   ghc-options: -Wall -fno-warn-orphans -fno-warn-unused-top-binds
   build-depends:
       Chart >=1.8 && <1.10
@@ -88,6 +105,8 @@ test-suite ch02-tests
       OverloadedStrings
       InstanceSigs
       StandaloneDeriving
+      DeriveGeneric
+      DeriveAnyClass
   ghc-options: -Wall -fno-warn-orphans -fno-warn-unused-top-binds
   build-depends:
       base >=4.12 && <5
